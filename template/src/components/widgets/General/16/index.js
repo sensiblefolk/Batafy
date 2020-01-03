@@ -2,7 +2,7 @@ import React from 'react'
 import style from './style.module.scss'
 
 class General16 extends React.Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { isFavorite } = this.props
 
     this.setState({

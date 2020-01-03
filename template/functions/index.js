@@ -65,22 +65,44 @@ exports.processDelete = functions.auth.user().onDelete(async user => {
 })
 
 async function updateUserDetails(user) {
-  console.log('jumped in 2')
   const id = user.uid
   const email = user.email
-  const name = user.displayName || 'No Name'
+  const name = user.displayName || ''
   const avatar = user.photoURL || ''
+  const userRef = admin.database().ref(`users/${user.uid}`)
 
+  if (!name) {
+    userRef
+      .once('value')
+      .then(async userDetails => {
+        const value = userDetails.val()
+
+        if (value) {
+          await admin.auth().updateUser(id, { displayName: value.name })
+          await userMutation(id, email, value.name, avatar)
+        }
+
+        return
+      })
+      .catch(error => {
+        throw new Error(error)
+      })
+  } else {
+    await userMutation(id, email, name, avatar)
+  }
+}
+
+const userMutation = async (id, email, name, avatar) => {
   const mutation = `mutation($id: String!, $email: String, $name: String, $avatar: String!) {
-      insert_users(objects: {
-        id: $id,
-        email: $email,
-        name: $name,
-        avatar: $avatar
-      }) {
-        affected_rows
-      }
-    }`
+    insert_users(objects: {
+      id: $id,
+      email: $email,
+      name: $name,
+      avatar: $avatar
+    }) {
+      affected_rows
+    }
+  }`
   try {
     const data = await client.request(mutation, {
       id: id,

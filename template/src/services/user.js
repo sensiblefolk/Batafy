@@ -32,6 +32,21 @@ export async function login(email, password) {
     })
 }
 
+export async function registerEmail(email, name, password) {
+  return firebaseAuth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(async result => {
+      await updateProfile(name, result.user)
+      return result
+    })
+    .catch(error => {
+      notification.warning({
+        message: error.code,
+        description: error.message,
+      })
+    })
+}
+
 export async function loginWithGoogle() {
   return firebaseAuth()
     .signInWithPopup(provider)
@@ -67,4 +82,13 @@ export async function logout() {
   return firebaseAuth()
     .signOut()
     .then(() => true)
+}
+
+const updateProfile = async (name, user) => {
+  const { uid, email } = user
+  const userRef = firebase.database().ref(`users/${uid}`)
+  return userRef
+    .set({ name, email })
+    .then(() => console.log('user saved successfully'))
+    .catch(error => console.log(error))
 }

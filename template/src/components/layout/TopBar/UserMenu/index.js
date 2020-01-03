@@ -26,6 +26,15 @@ class ProfileMenu extends React.Component {
     })
   }
 
+  userAvatar = () => {
+    const { user } = this.props
+    if (user.avatar) {
+      return <Avatar className={styles.avatar} shape="square" size="large" src={user.avatar} />
+    }
+
+    return <Avatar className={styles.avatar} shape="square" size="large" icon="user" />
+  }
+
   render() {
     const { user } = this.props
     const { count } = this.state
@@ -81,9 +90,7 @@ class ProfileMenu extends React.Component {
     return (
       <Dropdown overlay={menu} trigger={['click']} onVisibleChange={this.addCount}>
         <div className={styles.dropdown}>
-          <Badge count={count}>
-            <Avatar className={styles.avatar} shape="square" size="large" icon="user" />
-          </Badge>
+          <Badge count={count}>{this.userAvatar()}</Badge>
         </div>
       </Dropdown>
     )
