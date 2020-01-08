@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import classNames from 'classnames'
 import TopBar from 'components/layout/TopBar'
 import TopBarDark from 'components/layout/TopBarDark'
-import SubBar from 'components/layout/SubBar'
+// import SubBar from 'components/layout/SubBar'
 import MenuLeft from 'components/layout/MenuLeft'
 import MenuTop from 'components/layout/MenuTop'
 import Footer from 'components/layout/Footer'
@@ -60,7 +60,7 @@ class AppLayout extends React.PureComponent {
             >
               {menuLayoutType !== 'top-dark' && <TopBar />}
               {menuLayoutType === 'top-dark' && <TopBarDark />}
-              <SubBar />
+              {/* <SubBar /> */}
             </Layout.Header>
             <Layout.Content style={{ height: '100%', position: 'relative' }}>
               <div className="air__utils__content">{children}</div>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import NProgress from 'nprogress'
 import { Helmet } from 'react-helmet'
 import Loader from 'components/layout/Loader'
+import PublicRoutes from 'publicRoutes'
 import PublicLayout from './Public'
 import AuthLayout from './Auth'
 import AppLayout from './App'
@@ -28,7 +29,14 @@ class Layout extends React.PureComponent {
     } = prevProps
     if (pathname !== prevPathname) {
       window.scrollTo(0, 0)
+      this.isPublicRoute(pathname)
     }
+  }
+
+  isPublicRoute = path => {
+    const splitText = path.split('/')
+    const foundRoute = PublicRoutes.find(route => route.path === splitText[1])
+    return foundRoute
   }
 
   render() {
@@ -37,6 +45,8 @@ class Layout extends React.PureComponent {
       location: { pathname, search },
       user,
     } = this.props
+
+    const { path: isPublic } = this.isPublicRoute(pathname)
 
     // NProgress Management
     const currentPath = pathname + search
@@ -71,11 +81,11 @@ class Layout extends React.PureComponent {
         return <Loader />
       }
       // redirect to login page if current is not login page and user not authorized
-      if (!isAuthLayout && !isUserAuthorized) {
-        return <Redirect to="/user/login" />
+      if (!isAuthLayout && !isUserAuthorized && !isPublic) {
+        return <Redirect to={{ pathname: '/user/login', state: { from: pathname } }} />
       }
 
-      // redirec to home page is current user is logged in and authorized
+      // redirect to home page if current user is logged in and authorized
       if (isAuthLayout && isUserAuthorized) {
         return <Redirect to="/" />
       }

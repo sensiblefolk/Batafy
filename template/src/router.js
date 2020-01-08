@@ -17,7 +17,7 @@ const loadable = loader =>
     loading: () => <Loader />,
   })
 
-const routes = [
+export const routes = [
   // Dashboards
   {
     path: '/dashboard/analytics',

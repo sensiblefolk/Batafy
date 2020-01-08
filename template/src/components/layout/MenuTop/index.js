@@ -4,14 +4,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import _ from 'lodash'
+import { Row, Col, Button, Badge, Drawer, Icon } from 'antd'
 import classNames from 'classnames'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import style from './style.module.scss'
 
-const mapStateToProps = ({ menu, settings }) => ({
+import AuthButton from '../../utility/AuthButton'
+
+const mapStateToProps = ({ menu, settings, user }) => ({
   menuData: menu.menuData,
   settings,
   flyoutActive: !settings.isMobileView,
+  user,
 })
 
 @withRouter
@@ -21,6 +25,7 @@ class MenuTop extends React.Component {
     activeSubmenu: '',
     activeItem: '',
     renderedFlyoutItems: {},
+    cartVisible: false,
   }
 
   flyoutTimers = {}
@@ -39,17 +44,17 @@ class MenuTop extends React.Component {
     }
   }
 
-  toggleSettings = () => {
-    const { dispatch, settings } = this.props
-    const { isSidebarOpen } = settings
-    dispatch({
-      type: 'settings/CHANGE_SETTING',
-      payload: {
-        setting: 'isSidebarOpen',
-        value: !isSidebarOpen,
-      },
-    })
-  }
+  // toggleSettings = () => {
+  //   const { dispatch, settings } = this.props
+  //   const { isSidebarOpen } = settings
+  //   dispatch({
+  //     type: 'settings/CHANGE_SETTING',
+  //     payload: {
+  //       setting: 'isSidebarOpen',
+  //       value: !isSidebarOpen,
+  //     },
+  //   })
+  // }
 
   toggleMenu = () => {
     const { dispatch, settings } = this.props
@@ -275,9 +280,21 @@ class MenuTop extends React.Component {
     })
   }
 
+  showDrawer = () => {
+    this.setState({
+      cartVisible: true,
+    })
+  }
+
+  onClose = () => {
+    this.setState({
+      cartVisible: false,
+    })
+  }
+
   render() {
     const { settings } = this.props
-    const { renderedFlyoutItems } = this.state
+    const { renderedFlyoutItems, cartVisible } = this.state
     const items = this.generateMenuItems()
     return (
       <div>
@@ -303,42 +320,97 @@ class MenuTop extends React.Component {
             [style.air__menuFlyout__gray]: settings.flyoutMenuColor === 'gray',
           })}
         >
-          <div className={style.air__menuTop__outer}>
-            <a
-              href="#"
-              className={style.air__menuTop__mobileToggleButton}
-              onClick={this.toggleMobileMenu}
-            >
-              <span />
-            </a>
-            <a href="#" onClick={e => e.preventDefault()} className={style.air__menuTop__logo}>
-              <img src="../../../../resources/images/air-logo.png" alt="Air UI" />
-              <div className={style.air__menuTop__logo__name}>AIR UI</div>
-              <div className={style.air__menuTop__logo__descr}>Admin Template</div>
-            </a>
-            <div id="menu-left-container" className={style.air__menuTop__container}>
-              <ul className={style.air__menuTop__list}>
-                <li className={style.air__menuTop__item}>
-                  <a href="#" className={style.air__menuTop__link} onClick={this.toggleSettings}>
-                    <i className={`fe fe-settings ${style.air__menuTop__icon}`} />
-                    <span>Settings</span>
-                  </a>
-                </li>
-                <li className={style.air__menuTop__item}>
-                  <a
-                    href="https://docs.airuitemplate.com/"
-                    className={style.air__menuTop__link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className={`fe fe-compass ${style.air__menuTop__icon}`} />
-                    <span>Documentation</span>
-                  </a>
-                </li>
-                {items}
-              </ul>
+          <a
+            href="#"
+            className={style.air__menuTop__mobileToggleButton}
+            onClick={this.toggleMobileMenu}
+          >
+            <span />
+          </a>
+          <Row>
+            <div className={style.air__menuTop__outer}>
+              <Col sm={12} md={{ span: 8 }} lg={{ span: 8 }}>
+                <a href="#" className={style.air__menuTop__logo} onClick={e => e.preventDefault()}>
+                  <img src="../../../../resources/images/batafy-logo.png" alt="BATAFY" />
+                  {/* <div className={style.air__menuTop__logo__name}>AIR UI</div>
+                  <div className={style.air__menuTop__logo__descr}>Admin Template</div> */}
+                </a>
+              </Col>
+              <Col sm={12} md={8} lg={8}>
+                <div id="menu-left-container" className={style.air__menuTop__container}>
+                  <ul className={style.air__menuTop__list}>
+                    <li className={style.air__menuTop__item} key="n1">
+                      <a
+                        href="https://docs.airuitemplate.com/"
+                        className={style.air__menuTop__link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className={`fe fe-compass ${style.air__menuTop__icon}`} />
+                        <span>Documentation</span>
+                      </a>
+                    </li>
+                    {items}
+                  </ul>
+                </div>
+              </Col>
+              {!settings.isMobileView && (
+                <Col sm={12} md={8} lg={8}>
+                  <div id="menu-left-container" className={style.air__menuTop__container}>
+                    <ul className={style.air__menuTop__list}>
+                      <li
+                        className={style.air__menuTop__item}
+                        style={{ paddingLeft: '3rem' }}
+                        key="na3"
+                      >
+                        <Button type="primary" icon="plus" shape="round" ghost>
+                          Give Now
+                        </Button>
+                      </li>
+                      <li
+                        className={style.air__menuTop__item}
+                        style={{ paddingLeft: '2rem' }}
+                        key="na2"
+                      >
+                        <Button
+                          type="link"
+                          onClick={this.showDrawer}
+                          className={style.air__menuTop__link}
+                        >
+                          <Badge count={2} style={{ backgroundColor: '#52c41a' }}>
+                            <Icon
+                              className={`${style.air__menuTop__icon}`}
+                              type="shopping"
+                              style={{ fontSize: '1.5rem' }}
+                            />
+                          </Badge>
+                        </Button>
+                        <Drawer
+                          title="Watched Items"
+                          placement="right"
+                          closable
+                          onClose={this.onClose}
+                          visible={cartVisible}
+                        >
+                          <p>Some contents...</p>
+                          <p>Some contents...</p>
+                          <p>Some contents...</p>
+                        </Drawer>
+                      </li>
+
+                      <li
+                        className={style.air__menuTop__item}
+                        style={{ paddingLeft: '1rem' }}
+                        key="na1"
+                      >
+                        <AuthButton {...this.props} style={style} />
+                      </li>
+                    </ul>
+                  </div>
+                </Col>
+              )}
             </div>
-          </div>
+          </Row>
         </div>
         <a href="#" className={style.air__menuTop__backdrop} onClick={this.toggleMobileMenu} />
       </div>

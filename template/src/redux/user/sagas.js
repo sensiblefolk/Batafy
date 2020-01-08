@@ -1,5 +1,5 @@
 import { all, takeEvery, takeLatest, put, call } from 'redux-saga/effects'
-import { notification } from 'antd'
+import { notification, message } from 'antd'
 import { history } from 'index'
 import { login, loginWithGoogle, currentAccount, registerEmail, logout } from 'services/user'
 import actions from './actions'
@@ -17,7 +17,8 @@ export function* LOGIN({ payload }) {
     type: 'user/LOAD_CURRENT_ACCOUNT',
   })
   if (success) {
-    yield history.push('/')
+    const previousLocation = history.location.pathname
+    yield history.push(previousLocation)
     notification.success({
       message: 'Logged In',
       description: 'You have successfully logged in to Batafy',
@@ -29,7 +30,8 @@ export function* LOGIN_WITH_GOOGLE() {
   const success = yield call(loginWithGoogle)
   yield put({ type: 'user/LOAD_CURRENT_ACCOUNT' })
   if (success) {
-    yield history.push('/')
+    const previousLocation = history.location.pathname
+    yield history.push(previousLocation)
     notification.success({
       message: 'Logged In',
       description: 'You have successfully logged in to Batafy',
@@ -71,6 +73,7 @@ export function* LOAD_CURRENT_ACCOUNT() {
   })
   const response = yield call(currentAccount)
   if (response) {
+    // console.log(response)
     const { uid: id, email, photoURL: avatar, displayName: name } = response
     yield put({
       type: 'user/SET_STATE',
@@ -94,6 +97,7 @@ export function* LOAD_CURRENT_ACCOUNT() {
 
 export function* LOGOUT() {
   yield call(logout)
+  yield message.success('You are logged out')
   yield put({
     type: 'user/SET_STATE',
     payload: {

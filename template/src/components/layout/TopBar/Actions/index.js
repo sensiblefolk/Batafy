@@ -1,10 +1,10 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
-import { Dropdown } from 'antd'
+// import { FormattedMessage } from 'react-intl'
+import { Dropdown, Button, Badge } from 'antd'
 import List2 from 'components/widgets/Lists/2'
 import styles from './style.module.scss'
 
-class Actions extends React.Component {
+class Notifications extends React.Component {
   render() {
     const menu = (
       <React.Fragment>
@@ -16,16 +16,13 @@ class Actions extends React.Component {
       </React.Fragment>
     )
     return (
-      <Dropdown overlay={menu} trigger={['click']} placement="bottomRight">
-        <div className={styles.dropdown}>
-          <i className={`${styles.icon} fe fe-menu`} />
-          <span className="d-none d-xl-inline">
-            <FormattedMessage id="topBar.actions" />
-          </span>
-        </div>
+      <Dropdown overlay={menu} placement="bottomRight">
+        <Badge count={1}>
+          <Button type="primary" shape="circle" icon="bell" ghost className={`${styles.icon}`} />
+        </Badge>
       </Dropdown>
     )
   }
 }
 
-export default Actions
+export default Notifications

@@ -31,13 +31,13 @@ class Footer extends React.Component {
               </p>
               <p>&copy; {new Date().getFullYear()} Batafy Inc</p>
             </div>
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <div className={style.logo}>
                 <img src="../../../../resources/images/air-logo.png" alt="Air UI" />
                 <div className={style.logoName}>AIR UI</div>
                 <div className={style.logoDescr}>Admin Template</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ const Login = props => {
   const user = useSelector(state => state.user)
   const { form } = props
   const dispatch = useDispatch()
-
   const onSubmit = event => {
     event.preventDefault()
     form.validateFields((error, values) => {
@@ -30,9 +29,9 @@ const Login = props => {
   return (
     <div className={style.auth}>
       <div className="pt-5 pb-5 d-flex align-items-end mt-auto">
-        <img src="../../../../resources/images/air-logo.png" alt="AIR UI Logo" />
+        <img src="../../../../resources/images/batafy-logo.png" alt="BATAFY Logo" />
         <div className="air__utils__logo__text">
-          <div className="air__utils__logo__name text-uppercase text-dark font-size-21">BATAFY</div>
+          {/* <div className="air__utils__logo__name text-uppercase text-dark font-size-21">BATAFY</div> */}
           {/* <div className="air__utils__logo__descr text-uppercase font-size-12 text-gray-6">
             Admin template
           </div> */}
@@ -57,7 +56,7 @@ const Login = props => {
           <Button
             type="primary"
             size="large"
-            className="text-center btn btn-success w-100 font-weight-bold font-size-18"
+            className="text-center w-100 font-weight-bold font-size-18"
             htmlType="submit"
             loading={user.loading}
           >
@@ -122,7 +121,9 @@ const Login = props => {
             </a>
           </li>
         </ul>
-        <div className="text-gray-4 text-center">© 2019 Mediatec. All rights reserved.</div>
+        <div className="text-gray-4 text-center">
+          © {new Date().getFullYear()} Batafy. All rights reserved.
+        </div>
       </div>
     </div>
   )

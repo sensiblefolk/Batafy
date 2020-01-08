@@ -12,10 +12,12 @@ module.exports = override(
   addDecoratorsLegacy(),
   useEslintRc(),
   fixBabelImports('import', {
-    libraryName: 'antd', libraryDirectory: 'es', style: true
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: true,
   }),
   addLessLoader({
     javascriptEnabled: true,
-    modifyVars: antdTheme
-  })
+    modifyVars: antdTheme,
+  }),
 )

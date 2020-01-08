@@ -15,7 +15,8 @@ module.exports = {
   '@background-color-light': '#f2f4f8',
   '@background-color-base': '#f2f4f8',
 
-  '@primary-color': '#1b55e3',
+  // '@primary-color': '#1b55e3',
+  '@primary-color': '#0c5a33',
   '@info-color': '#0887c9',
   '@success-color': '#46be8a',
   '@error-color': '#fb434a',

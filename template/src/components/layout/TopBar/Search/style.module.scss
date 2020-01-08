@@ -13,13 +13,28 @@
   left: rem(15);
 }
 
-.searchInput {
-  border: 1px solid $gray-2;
-  border-radius: 5px;
-  background-color: $white;
-  padding-left: rem(45);
-  padding-right: rem(20);
-  padding-top: rem(6);
-  padding-bottom: rem(5);
-  width: rem(260);
+@media screen and (min-width: 300px) {
+  .searchInput {
+    border: 1px solid $gray-2;
+    border-radius: 5px;
+    background-color: $white;
+    padding-left: rem(45);
+    padding-right: rem(20);
+    padding-top: rem(6);
+    padding-bottom: rem(5);
+    width: rem(260);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .searchInput {
+    border: 1px solid $gray-2;
+    border-radius: 5px;
+    background-color: $white;
+    padding-left: rem(45);
+    padding-right: rem(20);
+    padding-top: rem(6);
+    padding-bottom: rem(5);
+    width: rem(660);
+  }
 }

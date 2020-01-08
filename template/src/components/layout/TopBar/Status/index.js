@@ -1,17 +1,25 @@
 import React from 'react'
-import { FormattedMessage } from 'react-intl'
+import styles from './style.module.scss'
 
-class Status extends React.Component {
+class BataBalance extends React.Component {
   render() {
     return (
-      <div>
-        <FormattedMessage id="topBar.status" />
-        <span className="ml-2 p-1 badge bg-danger text-white font-size-12 text-uppercase">
-          Trialing
-        </span>
-      </div>
+      <>
+        <p className={styles.amountText}>
+          Bata Balance
+          <span className={styles.amountValue}>5000</span>
+        </p>
+        <div className={styles.amountGraph}>
+          <i className={styles.amountGraphItem} style={{ height: '80%' }} />
+          <i className={styles.amountGraphItem} style={{ height: '50%' }} />
+          <i className={styles.amountGraphItem} style={{ height: '70%' }} />
+          <i className={styles.amountGraphItem} style={{ height: '60%' }} />
+          <i className={styles.amountGraphItem} style={{ height: '50%' }} />
+          <i className={styles.amountGraphItem} style={{ height: '65%' }} />
+        </div>
+      </>
     )
   }
 }
 
-export default Status
+export default BataBalance

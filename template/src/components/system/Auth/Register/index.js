@@ -61,15 +61,15 @@ class Register extends React.Component {
     return (
       <div className={style.auth}>
         <div className="pt-5 pb-5 d-flex align-items-end mt-auto">
-          <img src="../../../../resources/images/air-logo.png" alt="AIR UI Logo" />
-          <div className="air__utils__logo__text">
+          <img src="../../../../resources/images/batafy-logo.png" alt="BATAFY Logo" />
+          {/* <div className="air__utils__logo__text">
             <div className="air__utils__logo__name text-uppercase text-dark font-size-21">
               BATAFY
             </div>
-            {/* <div className="air__utils__logo__descr text-uppercase font-size-12 text-gray-6">
+            <div className="air__utils__logo__descr text-uppercase font-size-12 text-gray-6">
               Admin template
-            </div> */}
-          </div>
+            </div>
+          </div> */}
         </div>
         <div className={`${style.container} pl-5 pr-5 pt-5 pb-5 bg-white`}>
           <div className="text-dark font-size-30 mb-4 text-center">Sign Up</div>
@@ -178,7 +178,7 @@ class Register extends React.Component {
             </li>
           </ul>
           <div className="text-gray-4 text-center">
-            © {new Date().getFullYear()} Mediatec. All rights reserved.
+            © {new Date().getFullYear()} Batafy. All rights reserved.
           </div>
         </div>
       </div>
