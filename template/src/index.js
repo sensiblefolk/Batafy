@@ -5,11 +5,14 @@ import { createBrowserHistory } from 'history'
 import {
   ApolloClient,
   concat,
+  split,
+  getMainDefinition,
   ApolloLink,
   HttpLink,
   InMemoryCache,
   ApolloProvider,
 } from '@apollo/client'
+import { WebSocketLink } from 'apollo-link-ws'
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
@@ -41,6 +44,13 @@ sagaMiddleware.run(sagas)
 
 const httpLink = new HttpLink({ uri: 'https://batafy.herokuapp.com/v1/graphql' })
 
+const wsLink = new WebSocketLink({
+  uri: `ws://batafy.herokuapp.com/v1/graphql`,
+  options: {
+    reconnect: true,
+  },
+})
+
 const authMiddleware = new ApolloLink((operation, forward) => {
   // add the authorization to the headers
   const token = getToken()
@@ -48,15 +58,26 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
       authorization: token ? `Bearer ${token}` : '',
-      'x-hasura-admin-secret': 'A-0b56abcdef',
+      'x-hasura-admin-secret': process.env.REACT_APP_HASURAKEY,
     },
   })
 
   return forward(operation)
 })
 
+// using the ability to split links
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const definition = getMainDefinition(query)
+    return definition.kind === 'OperationDefinition' && definition.operation === 'subscription'
+  },
+  concat(authMiddleware, wsLink),
+  concat(authMiddleware, httpLink),
+)
+
 const client = new ApolloClient({
-  link: concat(authMiddleware, httpLink),
+  link,
   cache: new InMemoryCache(),
 })
 
