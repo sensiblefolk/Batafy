@@ -75,7 +75,8 @@ const Login = props => {
         </Button> */}
         <Button
           block
-          type="default"
+          type="danger"
+          ghost
           size="large"
           icon="google"
           className={`${style.googleSign} font-weight-bold font-size-18 w-100 mb-3`}

@@ -15,7 +15,13 @@ class ProfileMenu extends React.Component {
   render() {
     const { isMobile } = this.props
     //
-    return <>{isMobile && <AuthButton {...this.props} displayName={false} style={styles} />}</>
+    return (
+      <>
+        {isMobile && (
+          <AuthButton {...this.props} size="1.4rem" displayName={false} style={styles} />
+        )}
+      </>
+    )
   }
 }
 

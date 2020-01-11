@@ -16,10 +16,10 @@ module.exports = {
   '@background-color-base': '#f2f4f8',
 
   // '@primary-color': '#1b55e3',
-  '@primary-color': '#0c5a33',
+  '@primary-color': '#181356',
   '@info-color': '#0887c9',
   '@success-color': '#46be8a',
-  '@error-color': '#fb434a',
+  '@error-color': '#f00',
   '@highlight-color': '#fb434a',
   '@warning-color': '#f39834',
   '@normal-color': '#e4e9f0',
@@ -30,7 +30,8 @@ module.exports = {
   '@input-padding-vertical-sm': '11px',
   '@input-padding-vertical-lg': '11px',
   '@input-border-color': '#e4e9f0',
-  '@input-hover-border-color': '#0190fe',
+  // '@input-hover-border-color': '#0190fe',
+  '@input-hover-border-color': '#181356',
 
   '@shadow-color': 'rgba(0,0,0,.15)',
   '@box-shadow-base': '0 10px 35px -5px rgba(0,0,0,.15)',

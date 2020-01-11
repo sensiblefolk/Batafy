@@ -336,7 +336,7 @@ class MenuTop extends React.Component {
                   <div className={style.air__menuTop__logo__descr}>Admin Template</div> */}
                 </a>
               </Col>
-              <Col sm={12} md={8} lg={8}>
+              <Col sm={12} md={{ span: 8, pull: 2 }} lg={{ span: 8, pull: 1 }}>
                 <div id="menu-left-container" className={style.air__menuTop__container}>
                   <ul className={style.air__menuTop__list}>
                     <li className={style.air__menuTop__item} key="n1">
@@ -355,15 +355,11 @@ class MenuTop extends React.Component {
                 </div>
               </Col>
               {!settings.isMobileView && (
-                <Col sm={12} md={8} lg={8}>
+                <Col sm={12} md={{ span: 8, push: 2 }} lg={{ span: 8, push: 1 }}>
                   <div id="menu-left-container" className={style.air__menuTop__container}>
                     <ul className={style.air__menuTop__list}>
-                      <li
-                        className={style.air__menuTop__item}
-                        style={{ paddingLeft: '3rem' }}
-                        key="na3"
-                      >
-                        <Button type="primary" icon="plus" shape="round" ghost>
+                      <li className={style.air__menuTop__item} key="na3">
+                        <Button type="danger" icon="plus" shape="round" ghost>
                           Give Now
                         </Button>
                       </li>

@@ -17,17 +17,17 @@ class TopBar extends React.Component {
         {/* <div className="mr-auto d-none d-md-block">
           <IssuesHistory />
         </div> */}
-        <div className="mr-4 d-sm-block">
+        <div className="mb-0 mr-4 d-xl-block d">
           <Notifications />
         </div>
-        <div className="mb-0 mr-4 d-sm-block d-none">
+        <div className="mr-4 d-md-block d-none" style={{ paddingLeft: '1rem' }}>
           <BataBalance />
         </div>
         {/* <div className="mr-4 d-none d-sm-block">
           <LanguageSwitcher />
         </div> */}
 
-        <div className="">
+        <div className="mr-md-4 d-md-block">
           <UserMenu />
         </div>
       </div>

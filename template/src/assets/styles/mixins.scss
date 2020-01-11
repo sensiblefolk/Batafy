@@ -1,8 +1,10 @@
 // Colors
 $white: #fff;
 $black: #161537;
-$blue: #1b55e3;
-$blue-light: #3d6ee7;
+// $blue: #1b55e3;
+// $blue-light: #3d6ee7;
+$blue: #181356;
+$blue-light: #1e1873;
 $gray-1: #f2f4f8;
 $gray-2: #e4e9f0;
 $gray-3: #dde2ec;
@@ -15,7 +17,7 @@ $red: #f00;
 $gold: #d4af37;
 $pink: #fd3995;
 $purple: #652eff;
-$batafy: #0c5a33;
+$batafy: #181356;
 
 $dark-1: #0e0d2c;
 $dark-2: #2a274d;
@@ -30,7 +32,8 @@ $secondary: #6a7a84;
 $success: #46be8a;
 $info: #0887c9;
 $warning: #f39834;
-$danger: #fb434a;
+// $danger: #fb434a;
+$danger: $red;
 $light: $gray-1;
 $dark: $black;
 

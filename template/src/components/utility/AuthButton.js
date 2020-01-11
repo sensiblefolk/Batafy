@@ -4,7 +4,7 @@ import { history } from 'index'
 // import classNames from 'classnames'
 
 const AuthButton = props => {
-  const { user, style } = props
+  const { user, style, size = '1rem' } = props
   const userName = user.name.split(' ')
   const { displayName = true } = props
 
@@ -74,7 +74,7 @@ const AuthButton = props => {
         className={'ant-dropdown-link' && style.air__menuTop__link}
         style={{ cursor: 'pointer' }}
       >
-        <Icon type="user" style={{ fontSize: '1rem' }} />
+        <Icon type="user" style={{ fontSize: `${size}` }} />
         {displayName && <>&nbsp; {userName[0] ? `Hello ${userName[0]}` : 'Account'} &nbsp;</>}
         <Icon type="down" />
       </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 // import { FormattedMessage } from 'react-intl'
-import { Dropdown, Button, Badge } from 'antd'
+import { Dropdown, Icon, Badge } from 'antd'
 import List2 from 'components/widgets/Lists/2'
 import styles from './style.module.scss'
 
@@ -16,9 +16,16 @@ class Notifications extends React.Component {
       </React.Fragment>
     )
     return (
-      <Dropdown overlay={menu} placement="bottomRight">
-        <Badge count={1}>
-          <Button type="primary" shape="circle" icon="bell" ghost className={`${styles.icon}`} />
+      <Dropdown overlay={menu} placement="bottomCenter">
+        {/* <Badge count={1}>
+          <Button type="link" shape="circle" icon="bell" className={`${styles.icon}`} />
+        </Badge> */}
+        <Badge count={2} style={{ backgroundColor: '#f00' }}>
+          <Icon
+            className={`${styles.air__menuTop__icon}`}
+            type="bell"
+            style={{ fontSize: '1.5rem' }}
+          />
         </Badge>
       </Dropdown>
     )

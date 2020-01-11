@@ -28,7 +28,7 @@ const initialState = {
     isTopbarFixed: false,
     isFooterDark: false,
     isContentNoMaxWidth: false,
-    isAppMaxWidth: false,
+    isAppMaxWidth: true,
     isGrayBackground: true,
     isGrayTopbar: true,
     isCardShadow: true,

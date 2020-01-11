@@ -25,6 +25,28 @@ export const routes = [
     exact: true,
   },
 
+  // products
+  {
+    path: '/product/orders',
+    Component: loadable(() => import('pages/ecommerce/orders')),
+    exact: true,
+  },
+  {
+    path: '/product/catalog',
+    Component: loadable(() => import('pages/ecommerce/product-catalog')),
+    exact: true,
+  },
+  {
+    path: '/product/:details',
+    Component: loadable(() => import('pages/ecommerce/product-details')),
+    exact: true,
+  },
+  {
+    path: '/product/cart',
+    Component: loadable(() => import('pages/ecommerce/cart')),
+    exact: true,
+  },
+
   // System Pages
   {
     path: '/user/login',
