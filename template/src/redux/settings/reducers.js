@@ -22,8 +22,8 @@ const initialState = {
     isMenuUnfixed: false,
     menuLayoutType: 'top', // left, top, top-dark, nomenu
     menuType: 'default', // default, flyout, compact
-    menuColor: 'white', // dark, blue, gray, white
-    flyoutMenuColor: 'gray', // dark, blue, gray, white
+    menuColor: 'gray', // dark, blue, gray, white
+    flyoutMenuColor: 'white', // dark, blue, gray, white
     systemLayoutColor: 'gray', // white, dark, blue, gray, image
     isTopbarFixed: false,
     isFooterDark: false,

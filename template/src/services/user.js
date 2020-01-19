@@ -1,5 +1,5 @@
 import firebase from 'firebase/app'
-import { notification } from 'antd'
+import { notification, message } from 'antd'
 import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/storage'
@@ -84,6 +84,72 @@ export async function currentAccount() {
   return getCurrentUser(firebaseAuth())
 }
 
+export async function sendUserVerificationEmail() {
+  const user = await firebaseAuth().currentUser
+
+  const url =
+    process.env === 'dev'
+      ? 'https://batafy.firebaseapp.com/user/login'
+      : 'https://batafy.com/user/login'
+  const actionCodeSettings = {
+    url: url + user.email,
+    handleCodeInApp: false,
+  }
+
+  user
+    .sendEmailVerification(actionCodeSettings)
+    .then(async () => {
+      await message.success('Check your mail to verify your email')
+      return true
+    })
+    .catch(async error => {
+      message.error('error sending verification mail')
+      console.log(error)
+      return false
+    })
+}
+
+export async function forgotPassword(email) {
+  const auth = firebase.auth()
+
+  auth
+    .sendPasswordResetEmail(email)
+    .then(async () => {
+      await message.success('Check your email to reset your password')
+      return true
+    })
+    .catch(error => {
+      // An error happened.
+      message.error('user not found')
+      console.log(error)
+      return false
+    })
+}
+
+export async function passwordReset(password, query) {
+  const params = getParams(query)
+  let response
+  // Handle the user management action.
+  switch (params.mode) {
+    case 'resetPassword':
+      // Display reset password handler and UI.
+      response = await handleResetPassword(
+        params.oobcode,
+        params.continueUrl,
+        params.lang || 'en',
+        password,
+      )
+      break
+    // case 'verifyEmail':
+    //   // Display email verification handler and UI.
+    //   handleVerifyEmail(auth, actionCode, continueUrl, lang);
+    //   break;
+    default:
+      break
+  }
+  return response
+}
+
 export async function logout() {
   return firebaseAuth()
     .signOut()
@@ -110,9 +176,7 @@ const forceTokenRefresh = async user => {
 
     if (hasuraClaim) {
       const expiredTime = dayjs(idTokenResult.expirationTime).valueOf()
-      const currentTime = dayjs()
-        .subtract(1, 'hour')
-        .valueOf()
+      const currentTime = dayjs().valueOf()
       if (currentTime >= expiredTime) {
         const refreshedToken = user.getIdToken(true)
         console.log('refreshed token', refreshedToken)
@@ -142,4 +206,59 @@ const forceTokenRefresh = async user => {
 
 export function getIdToken() {
   return userToken
+}
+
+const getParams = params => {
+  const inputValue = params.split('?')
+  const input = inputValue[1]
+  const retVal = {}
+  let fromIndex = 0
+  let toIndex = 0
+  while (toIndex !== -1) {
+    let key = ''
+    let value = ''
+    toIndex = input.indexOf('=', fromIndex)
+    if (toIndex - fromIndex > 1) {
+      key = input.substring(fromIndex, toIndex)
+      fromIndex = toIndex + 1
+      toIndex = input.indexOf('&', fromIndex)
+      if (toIndex === -1) {
+        value = input.substring(fromIndex, input.length)
+      } else {
+        value = input.substring(fromIndex, toIndex)
+      }
+      retVal[key] = value
+      fromIndex = toIndex + 1
+    } else {
+      fromIndex = input.indexOf('&', toIndex) + 1
+    }
+  }
+  return retVal
+}
+
+const handleResetPassword = (actionCode, continueUrl, lang, password) => {
+  // Verify the password reset code is valid.
+  firebaseAuth()
+    .verifyPasswordResetCode(actionCode)
+    .then(() => {
+      // accountEmail = email
+      // Save the new password.
+      firebaseAuth()
+        .confirmPasswordReset(actionCode, password)
+        .then(() => {
+          // auth.signInWithEmailAndPassword(accountEmail, password);
+          message.success('Password changed successfully')
+          return true
+        })
+        .catch(() => {
+          message.error('error changing password')
+          return false
+        })
+    })
+    .catch(() => {
+      // Invalid or expired action code. Ask user to try to reset the password
+      // again.
+      message.error('Session has expired please try again')
+      return false
+    })
 }

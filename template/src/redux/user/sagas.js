@@ -1,8 +1,32 @@
 import { all, takeEvery, takeLatest, put, call } from 'redux-saga/effects'
 import { notification, message } from 'antd'
 import { history } from 'index'
-import { login, loginWithGoogle, currentAccount, registerEmail, logout } from 'services/user'
+import {
+  login,
+  loginWithGoogle,
+  currentAccount,
+  registerEmail,
+  logout,
+  sendUserVerificationEmail,
+  forgotPassword,
+  passwordReset,
+} from 'services/user'
 import actions from './actions'
+
+export function* FORGOT_PASSWORD({ payload }) {
+  const { email } = payload
+  const success = yield call(forgotPassword, email)
+  if (success) {
+    yield history.push('/user/login')
+  }
+}
+export function* PASSWORD_RESET({ payload, query }) {
+  const { password } = payload
+  const success = yield call(passwordReset, password, query)
+  if (success) {
+    yield history.push('/user/login')
+  }
+}
 
 export function* LOGIN({ payload }) {
   const { email, password } = payload
@@ -13,9 +37,6 @@ export function* LOGIN({ payload }) {
     },
   })
   const success = yield call(login, email, password)
-  yield put({
-    type: 'user/LOAD_CURRENT_ACCOUNT',
-  })
   if (success) {
     const previousLocation = history.location.pathname
     yield history.push(previousLocation)
@@ -48,13 +69,14 @@ export function* REGISTER_EMAIL({ payload }) {
     },
   })
   const success = yield call(registerEmail, email, fullname, password)
+  const verificationEmail = yield call(sendUserVerificationEmail)
   yield put({
     type: 'user/LOAD_CURRENT_ACCOUNT',
   })
   yield put({
     type: 'user/LOAD_CURRENT_ACCOUNT',
   })
-  if (success) {
+  if (success && verificationEmail) {
     const firstName = fullname.split(' ')
     yield history.push('/')
     notification.success({
@@ -114,6 +136,8 @@ export function* LOGOUT() {
 
 export default function* rootSaga() {
   yield all([
+    takeLatest(actions.FORGOT_PASSWORD, FORGOT_PASSWORD),
+    takeLatest(actions.PASSWORD_RESET, PASSWORD_RESET),
     takeEvery(actions.LOGIN, LOGIN),
     takeLatest(actions.LOGIN_WITH_GOOGLE, LOGIN_WITH_GOOGLE),
     takeLatest(actions.REGISTER_EMAIL, REGISTER_EMAIL),

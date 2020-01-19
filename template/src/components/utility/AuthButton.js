@@ -5,7 +5,7 @@ import { history } from 'index'
 
 const AuthButton = props => {
   const { user, style, size = '1rem' } = props
-  const userName = user.name.split(' ')
+  const userName = user.name ? user.name.split(' ') : ''
   const { displayName = true } = props
 
   const signInMenuDisplay = () => {
@@ -13,7 +13,7 @@ const AuthButton = props => {
       return (
         <Menu style={{ width: '15rem' }}>
           <Menu.Item key="0">
-            <Button type="danger" block>
+            <Button type="danger" onClick={() => history.push('/user/register')} block>
               CREATE AN ACCOUNT
             </Button>
           </Menu.Item>
@@ -75,7 +75,10 @@ const AuthButton = props => {
         style={{ cursor: 'pointer' }}
       >
         <Icon type="user" style={{ fontSize: `${size}` }} />
-        {displayName && <>&nbsp; {userName[0] ? `Hello ${userName[0]}` : 'Account'} &nbsp;</>}
+        {user.authorized && displayName && (
+          <>&nbsp; {userName[0] ? `Hello ${userName[0]}` : 'Account'} &nbsp;</>
+        )}
+        {!user.authorized && displayName && <>&nbsp; Account</>}
         <Icon type="down" />
       </div>
     </Dropdown>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import { useQuery, gql } from '@apollo/client'
 import { Helmet } from 'react-helmet'
 import Chart1 from 'components/widgets/Charts/1'
@@ -11,24 +11,21 @@ import List12 from 'components/widgets/Lists/12'
 import List15 from 'components/widgets/Lists/15'
 
 const USER = gql`
-  query MyQuery($id: String!) {
-    users_by_pk(id: $id) {
+  query MyQuery {
+    users {
       avatar
-      created_at
-      email
-      id
       name
     }
   }
 `
 
 const DashboardAnalytics = () => {
-  const user = useSelector(state => state.user)
-  const { loading, error, data } = useQuery(USER, {
-    variables: { id: user.id },
-  })
+  // const user = useSelector(state => state.user)
+  const { loading, error, data } = useQuery(USER)
 
-  if (loading) return <p>Loading...</p>
+  if (loading) {
+    return <p>loading...</p>
+  }
   if (error) {
     console.log(error)
     return <p>Error :(</p>

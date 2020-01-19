@@ -21,7 +21,7 @@ class Lockscreen extends React.Component {
     return (
       <div className={style.auth}>
         <div className="pt-5 pb-5 d-flex align-items-end mt-auto">
-          <img src="../../../../resources/images/batafy-logo.png" alt="Batafy Logo" />
+          <img src="../../../../resources/images/batafy-logo-black.png" alt="Batafy Logo" />
           {/* <div className="air__utils__logo__text">
             <div className="air__utils__logo__name text-uppercase text-dark font-size-21">
               AIR UI

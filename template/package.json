@@ -32,6 +32,7 @@
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.19",
     "antd": "^3.26.5",
+    "apollo-link-context": "^1.0.19",
     "apollo-link-ws": "^1.0.19",
     "bootstrap-css-only": "^4.3.1",
     "chart.js": "^2.9.1",

@@ -12,6 +12,7 @@ module.exports = {
 
   '@border-color-base': '#e4e9f0',
 
+  // '@background-color-light': '#f2f4f8',
   '@background-color-light': '#f2f4f8',
   '@background-color-base': '#f2f4f8',
 
@@ -25,14 +26,13 @@ module.exports = {
   '@normal-color': '#e4e9f0',
 
   '@input-color': '#161537',
-  '@input-padding-horizontal': '13px',
-  '@input-padding-vertical-base': '7px',
-  '@input-padding-vertical-sm': '11px',
-  '@input-padding-vertical-lg': '11px',
-  '@input-border-color': '#e4e9f0',
-  // '@input-hover-border-color': '#0190fe',
-  '@input-hover-border-color': '#181356',
-
+  // '@input-padding-horizontal': '13px',
+  // '@input-padding-vertical-base': '7px',
+  // '@input-padding-vertical-sm': '11px',
+  // '@input-padding-vertical-lg': '11px',
+  '@input-border-color': '#bfc4c9',
+  '@input-hover-border-color': '@primary-color',
+  '@input-placeholder-color': 'hsv(0, 0, 85%)',
   '@shadow-color': 'rgba(0,0,0,.15)',
   '@box-shadow-base': '0 10px 35px -5px rgba(0,0,0,.15)',
   '@shadow-1-up': '0 -10px 35px -5px rgba(0,0,0,.15)',
@@ -52,4 +52,9 @@ module.exports = {
   '@layout-body-background': '#fff',
   '@layout-header-background': 'transparent',
   '@layout-sider-background': 'transparent',
+
+  '@item-hover-bg': '@normal-color',
+  '@link-color': '@error-color',
+  '@link-hover-color': "color(~`colorPalette('@{link-color}', 5) `)",
+  '@link-active-color': " color(~`colorPalette('@{link-color}', 7) `)",
 }

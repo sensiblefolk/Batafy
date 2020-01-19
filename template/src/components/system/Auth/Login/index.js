@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, Divider } from 'antd'
 import { Link } from 'react-router-dom'
 import style from '../style.module.scss'
 
@@ -73,6 +73,7 @@ const Login = props => {
         >
           Log in with Google
         </Button> */}
+        <Divider>Or</Divider>
         <Button
           block
           type="danger"

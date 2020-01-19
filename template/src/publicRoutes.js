@@ -1,4 +1,4 @@
-const publicRoutes = [
+const PublicRoutes = [
   {
     path: '',
   },
@@ -19,4 +19,4 @@ const publicRoutes = [
   },
 ]
 
-export default publicRoutes
+export default PublicRoutes

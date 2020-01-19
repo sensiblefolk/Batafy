@@ -1,24 +1,30 @@
 export default async function getMenuData() {
   return [
     {
-      title: 'Dashboard',
-      key: 'dashboard',
-      icon: 'fe fe-bookmark',
-      url: '/dashboard/analytics',
-    },
-    {
       category: true,
       title: 'Products',
     },
     {
-      title: 'Product',
-      key: 'product',
-      icon: 'fe fe-shopping-cart',
+      title: 'Category',
+      key: 'category',
+      icon: 'fe fe-align-left',
       children: [
         {
           title: 'Orders',
           key: 'productOrders',
-          url: '/product/orders',
+          url: 'product/orders',
+          children: [
+            {
+              title: 'Dashboard',
+              key: 'ecommerceDashboard',
+              url: '/ecommerce/dashboard',
+            },
+            {
+              title: 'Orders',
+              key: 'ecommerceOrders',
+              url: '/ecommerce/orders',
+            },
+          ],
         },
         {
           title: 'Propduct Catalog',

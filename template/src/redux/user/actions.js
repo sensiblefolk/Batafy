@@ -6,6 +6,8 @@ const actions = {
   LOGOUT: 'user/LOGOUT',
   REGISTER_EMAIL: 'user/REGISTER_EMAIL',
   REGISTER_AUTH_PROVIDERS: 'user/REGISTER_AUTH_PROVIDERS',
+  FORGOT_PASSWORD: 'user/FORGOT_PASSWORD',
+  PASSWORD_RESET: 'user/PASSWORD_RESET',
 }
 
 export default actions

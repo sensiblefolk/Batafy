@@ -2,7 +2,7 @@ import localeAntd from 'antd/es/locale/en_US'
 
 const messages = {
   'topBar.issuesHistory': 'Issues History',
-  'topBar.typeToSearch': 'Start typing to search...',
+  'topBar.typeToSearch': 'Search Batafy...',
   'topBar.actions': 'Actions',
   'topBar.status': 'Status',
   'topBar.profileMenu.hello': 'Hello',

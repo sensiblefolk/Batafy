@@ -215,7 +215,7 @@ class MenuTop extends React.Component {
       return (
         <li
           className={classNames(style.air__menuTop__item, {
-            [style.air__menuTop__item__active]: activeItem === key,
+            [style.air__menuTop__item__active]: activeItem === key && key !== 'home',
           })}
           key={key}
         >
@@ -330,13 +330,19 @@ class MenuTop extends React.Component {
           <Row>
             <div className={style.air__menuTop__outer}>
               <Col sm={12} md={{ span: 8 }} lg={{ span: 8 }}>
-                <a href="#" className={style.air__menuTop__logo} onClick={e => e.preventDefault()}>
-                  <img src="../../../../resources/images/batafy-logo.png" alt="BATAFY" />
-                  {/* <div className={style.air__menuTop__logo__name}>AIR UI</div>
+                <div>
+                  <a
+                    href="#"
+                    className={style.air__menuTop__logo}
+                    onClick={e => e.preventDefault()}
+                  >
+                    <img src="../../../../resources/images/batafy-logo.png" alt="BATAFY" />
+                    {/* <div className={style.air__menuTop__logo__name}>AIR UI</div>
                   <div className={style.air__menuTop__logo__descr}>Admin Template</div> */}
-                </a>
+                  </a>
+                </div>
               </Col>
-              <Col sm={12} md={{ span: 8, pull: 2 }} lg={{ span: 8, pull: 1 }}>
+              <Col sm={12} md={{ span: 8, pull: 2 }} lg={{ span: 8, pull: 2 }}>
                 <div id="menu-left-container" className={style.air__menuTop__container}>
                   <ul className={style.air__menuTop__list}>
                     <li className={style.air__menuTop__item} key="n1">

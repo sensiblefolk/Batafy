@@ -20,6 +20,15 @@ const Layouts = {
 class Layout extends React.PureComponent {
   previousPath = ''
 
+  currentRoute = ''
+
+  componentDidMount() {
+    const {
+      location: { pathname },
+    } = this.props
+    this.currentRoute = this.isPublicRoute(pathname)
+  }
+
   componentDidUpdate(prevProps) {
     const {
       location: { pathname },
@@ -29,12 +38,13 @@ class Layout extends React.PureComponent {
     } = prevProps
     if (pathname !== prevPathname) {
       window.scrollTo(0, 0)
-      this.isPublicRoute(pathname)
+      // this.isPublicRoute(pathname)
     }
   }
 
   isPublicRoute = path => {
-    const splitText = path.split('/')
+    const currentPath = path ? path.split('/') : '/'
+    const splitText = currentPath
     const foundRoute = PublicRoutes.find(route => route.path === splitText[1])
     return foundRoute
   }
@@ -46,7 +56,8 @@ class Layout extends React.PureComponent {
       user,
     } = this.props
 
-    const { path: isPublic } = this.isPublicRoute(pathname)
+    // const { path: isPublic } = this.isPublicRoute(pathname)
+    // const isPublic = !!path)
 
     // NProgress Management
     const currentPath = pathname + search
@@ -81,7 +92,7 @@ class Layout extends React.PureComponent {
         return <Loader />
       }
       // redirect to login page if current is not login page and user not authorized
-      if (!isAuthLayout && !isUserAuthorized && !isPublic) {
+      if (!isAuthLayout && !isUserAuthorized && !this.currentRoute) {
         return <Redirect to={{ pathname: '/user/login', state: { from: pathname } }} />
       }
 
@@ -89,6 +100,11 @@ class Layout extends React.PureComponent {
       if (isAuthLayout && isUserAuthorized) {
         return <Redirect to="/" />
       }
+
+      // if (isPublic) {
+      //   console.log('jumped in')
+      //   return <Redirect to={currentPath} />
+      // }
       // in other case render previously set layout
       return <Container>{children}</Container>
     }

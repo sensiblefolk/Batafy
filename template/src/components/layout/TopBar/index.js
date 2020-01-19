@@ -17,7 +17,7 @@ class TopBar extends React.Component {
         {/* <div className="mr-auto d-none d-md-block">
           <IssuesHistory />
         </div> */}
-        <div className="mb-0 mr-4 d-xl-block d">
+        <div className="mb-0 mr-4 d-xl-block">
           <Notifications />
         </div>
         <div className="mr-4 d-md-block d-none" style={{ paddingLeft: '1rem' }}>

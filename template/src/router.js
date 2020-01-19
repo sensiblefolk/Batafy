@@ -14,38 +14,38 @@ const loadable = loader =>
   Loadable({
     loader,
     delay: false,
-    loading: () => <Loader />,
+    loading: () => <Loader fullScreen />,
   })
 
 export const routes = [
   // Dashboards
   {
-    path: '/dashboard/analytics',
+    path: '/home',
     Component: loadable(() => import('pages/dashboard/analytics')),
     exact: true,
   },
 
-  // products
-  {
-    path: '/product/orders',
-    Component: loadable(() => import('pages/ecommerce/orders')),
-    exact: true,
-  },
-  {
-    path: '/product/catalog',
-    Component: loadable(() => import('pages/ecommerce/product-catalog')),
-    exact: true,
-  },
-  {
-    path: '/product/:details',
-    Component: loadable(() => import('pages/ecommerce/product-details')),
-    exact: true,
-  },
-  {
-    path: '/product/cart',
-    Component: loadable(() => import('pages/ecommerce/cart')),
-    exact: true,
-  },
+  // // products
+  // {
+  //   path: '/product/orders',
+  //   Component: loadable(() => import('pages/ecommerce/orders')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/product/catalog',
+  //   Component: loadable(() => import('pages/ecommerce/product-catalog')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/product/:details',
+  //   Component: loadable(() => import('pages/ecommerce/product-details')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/product/cart',
+  //   Component: loadable(() => import('pages/ecommerce/cart')),
+  //   exact: true,
+  // },
 
   // System Pages
   {
@@ -56,6 +56,11 @@ export const routes = [
   {
     path: '/user/forgot-password',
     Component: loadable(() => import('pages/system/forgot-password')),
+    exact: true,
+  },
+  {
+    path: '/user/password-reset',
+    Component: loadable(() => import('pages/system/password-reset')),
     exact: true,
   },
   {
@@ -111,7 +116,7 @@ class Router extends React.Component {
               )
             }}
           >
-            <Route exact path="/" render={() => <Redirect to="/dashboard/analytics" />} />
+            <Route exact path="/" render={() => <Redirect to="/home" />} />
             {routes.map(({ path, Component, exact }) => (
               <Route path={path} key={path} exact={exact}>
                 <Component />

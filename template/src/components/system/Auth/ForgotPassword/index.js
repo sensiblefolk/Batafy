@@ -1,16 +1,21 @@
 import React from 'react'
 import { Form, Input, Button } from 'antd'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import style from '../style.module.scss'
 
+@connect()
 @Form.create()
 class ForgotPassword extends React.Component {
   onSubmit = event => {
     event.preventDefault()
-    const { form } = this.props
+    const { form, dispatch } = this.props
     form.validateFields((error, values) => {
       if (!error) {
-        console.log(values)
+        dispatch({
+          type: 'user/FORGOT_PASSWORD',
+          payload: values,
+        })
       }
     })
   }

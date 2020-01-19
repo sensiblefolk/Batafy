@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, Divider } from 'antd'
 import { Link } from 'react-router-dom'
 import style from '../style.module.scss'
 
@@ -116,6 +116,7 @@ class Register extends React.Component {
               Sign up
             </Button>
           </Form>
+          <Divider>Or</Divider>
           <Button
             block
             type="danger"

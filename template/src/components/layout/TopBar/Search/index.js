@@ -22,7 +22,7 @@ class Search extends React.Component {
       <React.Fragment>
         <div
           className={classNames('card air__utils__shadow', {
-            'width-330': isMobile,
+            'width-350': isMobile,
             'width-630': !isMobile,
           })}
         >
@@ -41,7 +41,7 @@ class Search extends React.Component {
                 />
               )}
             >
-              <div className="pt-4 px-4 pb-2">
+              <div className={`pt-4 px-4 pb-2 ${styles.searchDisplay}`}>
                 <List1 />
               </div>
             </Scrollbars>
