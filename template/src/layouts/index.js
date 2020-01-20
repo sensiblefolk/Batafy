@@ -15,8 +15,6 @@ const Layouts = {
   app: AppLayout,
 }
 
-@withRouter
-@connect(({ user }) => ({ user }))
 class Layout extends React.PureComponent {
   previousPath = ''
 
@@ -118,4 +116,4 @@ class Layout extends React.PureComponent {
   }
 }
 
-export default Layout
+export default withRouter(connect(({ user }) => ({ user }))(Layout))

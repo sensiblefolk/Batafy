@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createBrowserHistory } from 'history'
+import { createHashHistory } from 'history'
 
 import {
   ApolloClient,
@@ -32,7 +32,7 @@ import getToken from './services/token'
 import './global.scss'
 
 // middlewared
-const history = createBrowserHistory()
+const history = createHashHistory()
 const sagaMiddleware = createSagaMiddleware()
 const routeMiddleware = routerMiddleware(history)
 const middlewares = [sagaMiddleware, routeMiddleware]

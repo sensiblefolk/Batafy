@@ -134,7 +134,7 @@ export async function passwordReset(password, query) {
     case 'resetPassword':
       // Display reset password handler and UI.
       response = await handleResetPassword(
-        params.oobcode,
+        params.oobCode,
         params.continueUrl,
         params.lang || 'en',
         password,

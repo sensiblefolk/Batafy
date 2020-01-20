@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import style from '../style.module.scss'
 
-@connect()
-@Form.create()
 class ForgotPassword extends React.Component {
   onSubmit = event => {
     event.preventDefault()
@@ -94,4 +92,6 @@ class ForgotPassword extends React.Component {
   }
 }
 
-export default ForgotPassword
+const formCreate = Form.create({ name: 'forgot-passsord' })
+
+export default formCreate(connect()(ForgotPassword))

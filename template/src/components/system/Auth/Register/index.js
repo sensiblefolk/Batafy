@@ -4,8 +4,6 @@ import { Form, Input, Button, Divider } from 'antd'
 import { Link } from 'react-router-dom'
 import style from '../style.module.scss'
 
-@Form.create()
-@connect(({ user }) => ({ user }))
 class Register extends React.Component {
   state = { confirmDirty: false }
 
@@ -188,4 +186,6 @@ class Register extends React.Component {
   }
 }
 
-export default Register
+const formCreate = Form.create({ name: 'register' })
+
+export default formCreate(connect(({ user }) => ({ user }))(Register))

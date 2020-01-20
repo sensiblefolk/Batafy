@@ -2,7 +2,6 @@ import React from 'react'
 import { Layout } from 'antd'
 import { withRouter } from 'react-router-dom'
 
-@withRouter
 class AuthLayout extends React.PureComponent {
   render() {
     const { children } = this.props
@@ -16,4 +15,4 @@ class AuthLayout extends React.PureComponent {
   }
 }
 
-export default AuthLayout
+export default withRouter(AuthLayout)

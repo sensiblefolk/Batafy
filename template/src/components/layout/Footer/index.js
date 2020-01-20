@@ -5,7 +5,6 @@ import style from './style.module.scss'
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-@connect(mapStateToProps)
 class Footer extends React.Component {
   render() {
     const {
@@ -45,4 +44,4 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer
+export default connect(mapStateToProps)(Footer)

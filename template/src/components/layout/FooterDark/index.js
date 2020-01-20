@@ -5,7 +5,6 @@ import style from './style.module.scss'
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-@connect(mapStateToProps)
 class FooterDark extends React.Component {
   render() {
     const {
@@ -104,4 +103,4 @@ class FooterDark extends React.Component {
   }
 }
 
-export default FooterDark
+export default connect(mapStateToProps)(FooterDark)

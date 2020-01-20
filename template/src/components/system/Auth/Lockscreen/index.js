@@ -3,7 +3,6 @@ import { Form, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 import style from '../style.module.scss'
 
-@Form.create()
 class Lockscreen extends React.Component {
   onSubmit = event => {
     event.preventDefault()
@@ -93,4 +92,4 @@ class Lockscreen extends React.Component {
   }
 }
 
-export default Lockscreen
+export default Form.create({ name: 'lock-screen' })(Lockscreen)

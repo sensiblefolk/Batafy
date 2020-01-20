@@ -20,8 +20,9 @@ export function* FORGOT_PASSWORD({ payload }) {
     yield history.push('/user/login')
   }
 }
-export function* PASSWORD_RESET({ payload, query }) {
-  const { password } = payload
+export function* PASSWORD_RESET({ payload }) {
+  const { password, query } = payload
+  console.log(payload)
   const success = yield call(passwordReset, password, query)
   if (success) {
     yield history.push('/user/login')
@@ -37,8 +38,11 @@ export function* LOGIN({ payload }) {
     },
   })
   const success = yield call(login, email, password)
+  yield put({
+    type: 'user/LOAD_CURRENT_ACCOUNT',
+  })
   if (success) {
-    const previousLocation = history.location.pathname
+    const previousLocation = history.location.pathname || '/'
     yield history.push(previousLocation)
     notification.success({
       message: 'Logged In',
@@ -136,9 +140,9 @@ export function* LOGOUT() {
 
 export default function* rootSaga() {
   yield all([
+    takeEvery(actions.LOGIN, LOGIN),
     takeLatest(actions.FORGOT_PASSWORD, FORGOT_PASSWORD),
     takeLatest(actions.PASSWORD_RESET, PASSWORD_RESET),
-    takeEvery(actions.LOGIN, LOGIN),
     takeLatest(actions.LOGIN_WITH_GOOGLE, LOGIN_WITH_GOOGLE),
     takeLatest(actions.REGISTER_EMAIL, REGISTER_EMAIL),
     takeEvery(actions.LOAD_CURRENT_ACCOUNT, LOAD_CURRENT_ACCOUNT),

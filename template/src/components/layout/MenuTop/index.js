@@ -18,8 +18,6 @@ const mapStateToProps = ({ menu, settings, user }) => ({
   user,
 })
 
-@withRouter
-@connect(mapStateToProps)
 class MenuTop extends React.Component {
   state = {
     activeSubmenu: '',
@@ -420,4 +418,4 @@ class MenuTop extends React.Component {
   }
 }
 
-export default MenuTop
+export default withRouter(connect(mapStateToProps)(MenuTop))

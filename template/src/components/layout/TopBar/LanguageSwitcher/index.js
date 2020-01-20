@@ -3,7 +3,6 @@ import { Menu, Dropdown } from 'antd'
 import { connect } from 'react-redux'
 import styles from './style.module.scss'
 
-@connect(({ settings }) => ({ settings }))
 class LanguageSwitcher extends React.Component {
   changeLanguage = ({ key }) => {
     const { dispatch } = this.props
@@ -51,4 +50,4 @@ class LanguageSwitcher extends React.Component {
   }
 }
 
-export default LanguageSwitcher
+export default connect(({ settings }) => ({ settings }))(LanguageSwitcher)

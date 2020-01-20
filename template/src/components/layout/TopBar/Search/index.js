@@ -10,8 +10,7 @@ import styles from './style.module.scss'
 const mapStateToProps = ({ settings }) => ({
   isMobile: settings.isMobileView,
 })
-@injectIntl
-@connect(mapStateToProps)
+
 class Search extends React.Component {
   render() {
     const {
@@ -65,4 +64,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search
+export default injectIntl(connect(mapStateToProps)(Search))

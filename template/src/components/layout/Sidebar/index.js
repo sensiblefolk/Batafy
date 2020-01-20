@@ -7,7 +7,6 @@ import style from './style.module.scss'
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-@connect(mapStateToProps)
 class Sidebar extends React.Component {
   changeSetting = (setting, value) => {
     const { dispatch } = this.props
@@ -446,4 +445,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar
+export default connect(mapStateToProps)(Sidebar)

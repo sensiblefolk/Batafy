@@ -18,7 +18,7 @@ const PasswordReset = props => {
       if (!error) {
         dispatch({
           type: 'user/PASSWORD_RESET',
-          payload: { values, query: searchParams },
+          payload: { password: values.password, query: searchParams },
         })
       }
     })

@@ -10,7 +10,6 @@ const mapStateToProps = ({ settings, user }) => ({
   user,
 })
 
-@connect(mapStateToProps)
 class ProfileMenu extends React.Component {
   render() {
     const { isMobile } = this.props
@@ -25,4 +24,4 @@ class ProfileMenu extends React.Component {
   }
 }
 
-export default ProfileMenu
+export default connect(mapStateToProps)(ProfileMenu)

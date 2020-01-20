@@ -6,7 +6,6 @@ import style from './style.module.scss'
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-@connect(mapStateToProps)
 class SupportChat extends React.Component {
   toggleSupportChat = () => {
     const { dispatch, settings } = this.props
@@ -57,4 +56,4 @@ class SupportChat extends React.Component {
   }
 }
 
-export default SupportChat
+export default connect(mapStateToProps)(SupportChat)

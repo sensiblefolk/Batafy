@@ -15,8 +15,6 @@ import Sidebar from 'components/layout/Sidebar'
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-@withRouter
-@connect(mapStateToProps)
 class AppLayout extends React.PureComponent {
   render() {
     const {
@@ -76,4 +74,4 @@ class AppLayout extends React.PureComponent {
   }
 }
 
-export default AppLayout
+export default withRouter(connect(mapStateToProps)(AppLayout))

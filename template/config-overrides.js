@@ -1,4 +1,3 @@
-// Overriding CreateReactApp settings, ref: https://github.com/arackaf/customize-cra
 const antdTheme = require('./src/theme.js')
 const {
   override,

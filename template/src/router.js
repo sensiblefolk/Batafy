@@ -87,7 +87,6 @@ export const routes = [
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-@connect(mapStateToProps)
 class Router extends React.Component {
   render() {
     const {
@@ -130,4 +129,4 @@ class Router extends React.Component {
   }
 }
 
-export default Router
+export default connect(mapStateToProps)(Router)

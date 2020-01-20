@@ -19,8 +19,6 @@ const mapStateToProps = ({ menu, settings }) => ({
     !settings.isMobileView,
 })
 
-@withRouter
-@connect(mapStateToProps)
 class MenuLeft extends React.Component {
   state = {
     activeSubmenu: '',
@@ -403,4 +401,4 @@ class MenuLeft extends React.Component {
   }
 }
 
-export default MenuLeft
+export default withRouter(connect(mapStateToProps)(MenuLeft))
