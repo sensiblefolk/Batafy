@@ -3,7 +3,7 @@ const PublicRoutes = [
     path: '',
   },
   {
-    path: 'dashboard',
+    path: 'home',
   },
   {
     path: 'product',

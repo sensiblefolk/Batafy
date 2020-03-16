@@ -25,27 +25,39 @@ export const routes = [
     exact: true,
   },
 
-  // // products
-  // {
-  //   path: '/product/orders',
-  //   Component: loadable(() => import('pages/ecommerce/orders')),
-  //   exact: true,
-  // },
-  // {
-  //   path: '/product/catalog',
-  //   Component: loadable(() => import('pages/ecommerce/product-catalog')),
-  //   exact: true,
-  // },
-  // {
-  //   path: '/product/:details',
-  //   Component: loadable(() => import('pages/ecommerce/product-details')),
-  //   exact: true,
-  // },
-  // {
-  //   path: '/product/cart',
-  //   Component: loadable(() => import('pages/ecommerce/cart')),
-  //   exact: true,
-  // },
+  // products
+  {
+    path: '/product/search',
+    Component: loadable(() => import('pages/product/search-product')),
+    exact: true,
+  },
+  {
+    path: '/product/list',
+    Component: loadable(() => import('pages/product/product-list')),
+    exact: true,
+  },
+  {
+    path: '/product/detail/:details',
+    Component: loadable(() => import('pages/product/product-detail')),
+    exact: true,
+  },
+  {
+    path: '/product/new',
+    Component: loadable(() => import('pages/product/new-product')),
+    exact: true,
+  },
+
+  // Complete Purchase
+  {
+    path: '/cart',
+    Component: loadable(() => import('pages/cart')),
+    exact: true,
+  },
+  {
+    path: '/check_out',
+    Component: loadable(() => import('pages/checkout')),
+    exact: true,
+  },
 
   // System Pages
   {

@@ -31,6 +31,7 @@ export function* SETUP() {
           value = query[key]
           break
       }
+      console.log('settings', key)
       reduxStore.dispatch({
         type: 'settings/CHANGE_SETTING',
         payload: {

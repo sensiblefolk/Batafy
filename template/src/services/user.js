@@ -88,7 +88,7 @@ export async function sendUserVerificationEmail() {
   const user = await firebaseAuth().currentUser
 
   const url =
-    process.env === 'dev'
+    process.env.NODE_ENV === 'development'
       ? 'https://batafy.firebaseapp.com/user/login'
       : 'https://batafy.com/user/login'
   const actionCodeSettings = {

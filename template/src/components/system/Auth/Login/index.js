@@ -45,7 +45,16 @@ const Login = props => {
         <Form layout="vertical" hideRequiredMark onSubmit={onSubmit} className="mb-4">
           <Form.Item>
             {form.getFieldDecorator('email', {
-              rules: [{ required: true, message: 'Please input your e-mail address' }],
+              rules: [
+                {
+                  type: 'email',
+                  message: 'The input is not a valid email address',
+                },
+                {
+                  required: true,
+                  message: 'Please input your E-mail!',
+                },
+              ],
             })(<Input size="large" placeholder="Email" />)}
           </Form.Item>
           <Form.Item>
